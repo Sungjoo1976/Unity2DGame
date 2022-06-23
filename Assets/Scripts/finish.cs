@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class finish : MonoBehaviour
 {
+    [SerializeField] private int NumOfFruit;
+
     private AudioSource finishSound;
 
     void Start()
@@ -14,6 +17,10 @@ public class finish : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(NumOfFruit == 3)
+        {
+
+        }
         finishSound.Play();
         CompleteLevel();
     }

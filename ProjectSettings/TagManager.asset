@@ -8,6 +8,8 @@ TagManager:
   - Trap
   - Enemy
   - Apple
+  - NextLevel
+  - Kiwi
   layers:
   - Default
   - TransparentFX

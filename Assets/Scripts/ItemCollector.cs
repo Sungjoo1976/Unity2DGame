@@ -2,30 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ItemCollector : MonoBehaviour
 {
-    private int cherries = 0;
-    private int apples = 0;
+
+    public int fruits = 0;
 
     [SerializeField] private Text fruitsText;
-
     [SerializeField] private AudioSource collectSoundEffect;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Cherry"))
         {
             collectSoundEffect.Play();
             Destroy(collision.gameObject);
-            cherries++;
-            fruitsText.text = "Fruits: " + cherries;
+            fruits++;
+            fruitsText.text = "Fruits: " + fruits;
         }
         if (collision.gameObject.CompareTag("Apple"))
         {
             collectSoundEffect.Play();
             Destroy(collision.gameObject);
-             fruitsText.text = "Fruits: " + apples;
+            fruits++;
+            fruitsText.text = "Fruits: " + fruits;
+        }
+        if (collision.gameObject.CompareTag("NextLevel"))
+        {
+            if(fruits == 3)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 }

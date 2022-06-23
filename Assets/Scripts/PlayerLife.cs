@@ -14,6 +14,7 @@ public class PlayerLife : MonoBehaviour
 
     [SerializeField] private Text lifeText;
     [SerializeField] private AudioSource deathSoundEffect;
+    [SerializeField] Transform spawnPoint;
 
     private void Start()
     {
@@ -28,12 +29,19 @@ public class PlayerLife : MonoBehaviour
             lifes--;
             lifeText.text = "\r\nLifes: " + lifes;
             Die();
+            rb.transform.position = spawnPoint.position;
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
             lifes--;
             lifeText.text = "\r\nLifes: " + lifes;
             Die();
+            rb.transform.position = spawnPoint.position;
+
+        }
+        if (lifes == 0)
+        {
+            SceneManager.LoadScene("EndScene");
         }
 
     }
@@ -41,12 +49,12 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         deathSoundEffect.Play();
-        rb.bodyType = RigidbodyType2D.Static;
-        anim.SetTrigger("death");
+        //rb.bodyType = RigidbodyType2D.Static;
+        //anim.SetTrigger("death");
     }
-
+    /*
     private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    }*/
 }
